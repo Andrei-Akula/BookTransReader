@@ -1,0 +1,23 @@
+{
+  "book": "1pet",
+  "chapter": "5",
+  "text": [
+    {
+      "type": "header",
+      "text": "Второе послание Петра"
+    },
+    {
+      "type": "paragraph",
+      "text": [
+        {
+          "type": "verse",
+          "number": "",
+          "text": ""
+        },
+
+      ]
+    }
+  ]
+}
+
+
