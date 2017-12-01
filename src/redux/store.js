@@ -1,13 +1,11 @@
 
 import { combineReducers } from 'redux';
 import navReducer from './reducers/nav-reducer'
-
-// function simple(state = {}, action) {
-//   return state;
-// }
+import transReducer from './reducers/trans-reducer'
 
 const storeReducers = combineReducers({
-  nav: navReducer
+  nav: navReducer,
+  trans: transReducer
 });
 
 export default storeReducers;

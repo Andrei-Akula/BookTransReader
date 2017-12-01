@@ -33,6 +33,11 @@ export const VERSE_CITE_TEXT_COLOR = TEXT_COLOR;
      height: 50,
      backgroundColor: '#757575',
    },
+   translationBarContainer: {
+     flex: 1,
+     flexDirection: 'row',
+     justifyContent: 'space-around',
+   },
    baseText: {
      color: TEXT_COLOR,
      fontFamily: 'Helvetica Neue',

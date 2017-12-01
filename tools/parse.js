@@ -1,3 +1,9 @@
+/**
+ * § - splits paragraphs
+ * # - splits verses
+ * | - splits note block with its text and note  itself: |some text^note goes here|
+ * ^ - splits text and note in note block
+ */
 const fs = require('fs');
 const fp = require('lodash/fp');
 

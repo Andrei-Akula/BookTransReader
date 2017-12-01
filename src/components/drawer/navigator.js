@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { reduce, findIndex, size } from 'lodash/fp';
 import {
   Button,
@@ -31,30 +32,34 @@ class HomeScreen extends React.Component {
         />
         <Button
           onPress={() => navigate('1pet')}
-          title="go to Jas"
+          title="go to 1Pet"
         />
       </ChapterView>
     );
   }
 }
 
-function getChapterScreen(bookId, bookName, chapter) {
-  return function ChapterScreen(props) {
-    return (
-      <ChapterView>
-        <Header>{bookName}, глава {chapter}</Header>
-        {/* <Paragraph>{props.navigation.state.params.book}!</Paragraph> */}
+function ChapterScreenUI(props) {
+  // console.log('ChapterScreen props', props)
+  return (
+    <ChapterView>
+      {/* <Header>{bookName}, глава {chapter}</Header> */}
+      {/* <Paragraph>{props.navigation.state.params.book}!</Paragraph> */}
+      {/* <Paragraph>{JSON.stringify(props.nav)}</Paragraph> */}
+      <Paragraph>Перевод {props.trans.single}</Paragraph>
 
-        <Paragraph>1 Петр, апостол Иисуса Христа – избранникам, рассеянным по провинциям, где они проживают: Понт, Галатия, Каппадокия, Асия и Вифиния. 2 Да умножатся среди вас благодать и мир от Бога Отца, Который вас познал изначально, освятил Духом на послушание и окропил кровью Иисуса Христа!</Paragraph>
-        <Paragraph>3 Благословен Бог и Отец Господа нашего Иисуса Христа! По великой своей милости Он, когда воскрес Иисус Христос, и нас возродил от смерти к живой надежде, 4 чтобы нам получить наследие, непричастное тлению, скверне и гибели. Оно сберегается для вас на небесах – 5 а вас по вашей вере охраняет сила Божья, и уготованное спасение откроется в последний час. 6 Возрадуйтесь этому, даже если сейчас и пришлось вам на краткое время пережить скорбь от разных искушений. 7 И так ваша вера после испытаний окажется ценнее золота, которое однажды исчезнет – а ведь и его испытывают огнем! – и когда явится Иисус Христос, она принесет вам похвалу, славу и честь. 8 Вы любите Его, хотя не видели Его прежде, и верите, хотя и теперь Он незрим – и это внушает вам радость неизреченную и славную. </Paragraph>
-        <Paragraph>9 Так вы приближаетесь к цели вашей веры – спасению ваших душ. 10 Об этом спасении старательно разузнавали пророки, которые пророчествовали о благодати, которая вас ожидала, 11 пытаясь определить, на какой именно час заранее указывал свидетельствовавший в них Христов Дух и каким будет этот час Христовых страданий и последовавшей за ними славы. 12 Им было открыто, что это служение – не для них самих, но для вас, и теперь это возвестили вам те, кто научил вас Евангелию Духом Святым, посланным с неба – а ведь даже ангелы желали бы прикоснуться к этой тайне.</Paragraph>
-        <Paragraph>13 Так что соберитесь с мыслями, будьте трезвы и всю надежду возложите на благодать, которая будет вам дана, когда явится Иисус Христос. 14 Будьте послушными детьми, не поддавайтесь прежним прихотям времен вашего неведения. 15 Тот, кто вас призвал – свят, и вы будьте святы во всех своих поступках, как и написано: 16 «будьте святы, ибо Я свят». 17 Вы зовете Отцом Того, кто судит нелицеприятно каждого по его делам – так проводите же время своего житейского странствия в трепете перед Ним.</Paragraph>
-        <Paragraph>18 Вы же знаете: от бренной жизни (какая вам досталась от отцов) искупило вас не серебро и золото, которые предстоит погибнуть, 19 но драгоценная кровь Христа – безупречного и беспорочного Агнца. 20 Так было назначено прежде сотворения мира, а произошло в последние времена при вашем посредстве. 21 И вы в единении с Ним верны Богу, Который воскресил Его из мертвых и наделил славой, так что веру и надежду вы возлагаете на Бога.</Paragraph>
-        <Paragraph>22 Очистив ваши души послушанием истине [через Духа] и стремясь к нелицемерному братолюбию, постарайтесь от чистого сердца любить друг друга, 23 ведь вас возродило к новой жизни не тленное семя, но нетленное Слово неизменно [вовек] Живого Бога. 24 Ибо «все люди – трава, вся слава их – что цвет на траве, увяла трава и цветок облетел, 25 а слово Божье пребывает вовеки». Вот какая благая весть была вам возвещена!</Paragraph>
-        <Paragraph></Paragraph>
-      </ChapterView>
-    );
-  }
+      <Paragraph></Paragraph>
+    </ChapterView>  
+  );
+}
+const mapStateToProps = (state) => ({
+  nav: state.nav,
+  trans: state.trans
+});
+const ChapterScreen = connect(mapStateToProps)(ChapterScreenUI);
+
+function getChapterScreen(bookId, bookName, chapter) {
+  return ChapterScreen;
 }
 
 function getNavAction(bookId, chapter) {
@@ -71,7 +76,7 @@ function getNextNavRoute(bookId, chapter) {
   const bookIndex = findIndex({ key: bookId }, bookContent);
   const book = bookContent[bookIndex];
   let nextChapter = chapter + 1;
-  if (nextChapter > size(book.chapters)) {
+  if (nextChapter > size(book.chapterNumbers)) {
     const nextBook = bookContent[bookIndex + 1];
     if (nextBook) {
       return { title: `${nextBook.shortName} 1`, navAction: getNavAction(nextBook.key, 1) }
@@ -84,7 +89,7 @@ function getNextNavRoute(bookId, chapter) {
 }
 
 
-function getChapterRouteConfigs(bookId, bookName, shortName, chapters) {
+function getChapterRouteConfigs(bookId, bookName, shortName, chapterNumbers) {
   return reduce((acc, number) => {
     const nextNavRoute = getNextNavRoute(bookId, number);
     acc[`${bookId}-ch-${number}`] = {
@@ -96,12 +101,12 @@ function getChapterRouteConfigs(bookId, bookName, shortName, chapters) {
       }),
     };
     return acc;
-  }, {}, chapters);
+  }, {}, chapterNumbers);
 }
 
-function getBookScreen({ key, name, shortName, chapters}) {
+function getBookScreen({ key, name, shortName, chapterNumbers}) {
   return StackNavigator({
-    ...getChapterRouteConfigs(key, name, shortName, chapters)
+    ...getChapterRouteConfigs(key, name, shortName, chapterNumbers)
   });
 }
 
