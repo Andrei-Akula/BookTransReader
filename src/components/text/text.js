@@ -73,10 +73,11 @@ VerseNumber.propTypes = {
 };
 
 
-export function Note({ children }) {
+export function Note({ children, isEnd, ...rest }) {
+  const space = isEnd ? null : <TextSpace />
   return (
-    <BaseText style={commonStyles.verseNoteText}>
-    {children}
+    <BaseText style={commonStyles.verseNoteText} {...rest}>
+      {children}{space}
     </BaseText>
   );
 }
@@ -110,6 +111,7 @@ function TextSpace() {
     <BaseText>{sp}</BaseText>
   );
 }
+
 function NumberSpace() {
   return (
     <BaseText style={{color: 'transparent'}}>|</BaseText>

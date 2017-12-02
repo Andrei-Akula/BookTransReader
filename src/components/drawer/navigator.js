@@ -10,6 +10,7 @@ import { DrawerNavigator, StackNavigator, NavigationActions } from 'react-naviga
 import { CustomDrawerContentComponent } from './content';
 import { Header, Paragraph, VerseNumber, Verse, Note, Cite } from '../../components/text/text';
 import { ChapterView } from '../../components/view/chapter-view';
+import { buildChapter } from '../../components/text/chapter';
 import { getBookContent } from '../../data/book';
 import { commonStyles } from '../../styles/global'
 
@@ -47,7 +48,7 @@ function ChapterScreenUI(props) {
       {/* <Paragraph>{props.navigation.state.params.book}!</Paragraph> */}
       {/* <Paragraph>{JSON.stringify(props.nav)}</Paragraph> */}
       <Paragraph>Перевод {props.trans.single}</Paragraph>
-
+      {buildChapter(props.trans.single, "1pet", "1")}
       <Paragraph></Paragraph>
     </ChapterView>  
   );

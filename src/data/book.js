@@ -1,3 +1,4 @@
+import { find } from 'lodash';
 import Nt1Pet from './nt/1pet';
 
 const takeNumbers = function* (count) {
@@ -78,9 +79,9 @@ export function getBookContent() {
 }
 
 export function getBookChapter(bookId, chapter, translation) {
-  const book = getBookContent()[bookId];
+  const book = find(getBookContent(), { key: bookId});
   if (book) {
-    return book.data.translations[translation].chapter[chapter] || {};
+    return book.data.translations[translation].chapters[chapter - 1] || {};
   }
   return {};
 }
