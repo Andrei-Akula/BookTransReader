@@ -1,0 +1,1 @@
+# Mobile reader pararel NT translations
