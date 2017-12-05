@@ -83,6 +83,9 @@ export const commonStyles = StyleSheet.create({
   verseNumberText: {
     color: VERSE_NUMBER_TEXT_COLOR,
   },
+  selectedVerseText: {
+    backgroundColor: '#ffcc00'
+  },
   verseNoteText: {
     // color: VERSE_NOTE_TEXT_COLOR,
     fontWeight: '500',

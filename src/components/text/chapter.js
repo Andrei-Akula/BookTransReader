@@ -5,6 +5,7 @@ import { map, reduce, parseInt  } from 'lodash/fp';
 import { commonStyles } from '../../styles/global'
 import { Header, Paragraph, VerseNumber, Verse, Note, Cite } from './text';
 import { NoteUI } from '../ui/note';
+import { VerseUI } from '../ui/verse';
 import { getBookChapter } from '../../data/book';
 
 const getChapterAsNumber = parseInt(10);
@@ -24,10 +25,12 @@ const buildVerses = reduce((acc, verse) =>
   (verse.type === 'verse' ?
     [
       ...acc,
-      <VerseNumber number={verse.number} key={`number${verse.number}`} />,
-      (isString(verse.text) ? 
-        <Verse key={`verse-${verse.number}`}>{verse.text}</Verse>
-      : buildTextWithNotes(verse.text))
+      <VerseUI number={verse.number} key={`VerseUI-${verse.number}`}>
+        <VerseNumber number={verse.number} key={`number${verse.number}`} />
+        {(isString(verse.text) ? 
+          <Verse key={`verse-${verse.number}`}>{verse.text}</Verse>
+        : buildTextWithNotes(verse.text))}
+      </VerseUI>,
     ]
     : acc), []);
 

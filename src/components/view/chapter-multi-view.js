@@ -4,14 +4,17 @@ import { reduce, values } from 'lodash/fp';
 import { ScrollView, View, Button, Text } from 'react-native';
 import { Paragraph } from '../../components/text/text';
 import { toggleTranslaion } from '../../redux/actions/translations'
+import { clearVerseSelection } from '../../redux/actions/text-related'
 import { commonStyles } from '../../styles/global';
+
+// TODO: fix clearVerseSelection
 
 const transCount = reduce((acc, tr) => tr ? acc + 1 : acc, 0);
 
 function ChapterGrid({ trans, switchTranslation, tpv, tpk, op }) {
   const itemsWidthStyle = transCount(values(trans)) === 3 ? commonStyles.chapterThreeItems : commonStyles.chapterTwoItems;
   return (
-    <ScrollView >
+    <ScrollView>
       <View style={commonStyles.chapterGrid}>
         {trans['TPV'] && <View style={[commonStyles.chapterScrollView, 
           commonStyles.chapterScrollViewGridItem, itemsWidthStyle]}>
@@ -30,7 +33,8 @@ function ChapterGrid({ trans, switchTranslation, tpv, tpk, op }) {
   );
 }
 
-function ChapterMultiViewUI({ style, children, trans, switchTranslation, tpv, tpk, op, ...rest }) {
+function ChapterMultiViewUI({ style, children, trans, switchTranslation, tpv, tpk, op,
+  clearVerseSelection, ...rest }) {
   function onTPV(params) {
     switchTranslation('TPV');
   }
@@ -42,7 +46,8 @@ function ChapterMultiViewUI({ style, children, trans, switchTranslation, tpv, tp
   }
   return (
     <View style={[commonStyles.chapterView, style]} {...rest}>
-      <ChapterGrid trans={trans} switchTranslation={switchTranslation} tpv={tpv} tpk={tpk} op={op} />
+      <ChapterGrid trans={trans} switchTranslation={switchTranslation}
+        tpv={tpv} tpk={tpk} op={op} clearVerseSelection={clearVerseSelection} />
       <View style={commonStyles.translationBarView}>
         <View style={commonStyles.translationBarContainer}>
           <Button
@@ -70,9 +75,8 @@ const mapStateToProps = (state) => ({
   trans: state.trans.multi
 });
 const mapDispatchToProps = (dispatch) => ({
-  switchTranslation: (tr) => {
-    dispatch(toggleTranslaion(tr, true))
-  }
+  switchTranslation: tr => dispatch(toggleTranslaion(tr, true)),
+  clearVerseSelection: () => dispatch(clearVerseSelection())
 });
 
 
