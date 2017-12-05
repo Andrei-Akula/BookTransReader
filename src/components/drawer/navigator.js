@@ -5,11 +5,13 @@ import {
   Button,
   ScrollView,
   View,
+  Dimensions
 } from 'react-native';
 import { DrawerNavigator, StackNavigator, NavigationActions } from 'react-navigation';
 import { CustomDrawerContentComponent } from './content';
 import { Header, Paragraph, VerseNumber, Verse, Note, Cite } from '../../components/text/text';
 import { ChapterView } from '../../components/view/chapter-view';
+import { ChapterMultiView } from '../../components/view/chapter-multi-view';
 import { buildChapter } from '../../components/text/chapter';
 import { getBookContent } from '../../data/book';
 import { commonStyles } from '../../styles/global'
@@ -39,20 +41,39 @@ class HomeScreen extends React.Component {
     );
   }
 }
+class ChapterScreenUI extends React.Component {
+  constructor(props) {
+    super(props);
+    const { width, height } = Dimensions.get('window');
+    this.state = {
+      isPortrait: width < height
+    };
+    this.onLayoutChange = (event) => {
+      const { width, height } = event.nativeEvent.layout;
+      this.setState({ isPortrait: width < height });
+    };
+  }
 
-function ChapterScreenUI(props) {
-  // console.log('ChapterScreen props', props)
-  return (
-    <ChapterView>
-      {/* <Header>{bookName}, глава {chapter}</Header> */}
-      {/* <Paragraph>{props.navigation.state.params.book}!</Paragraph> */}
-      {/* <Paragraph>{JSON.stringify(props.nav)}</Paragraph> */}
-      <Paragraph>Перевод {props.trans.single}</Paragraph>
-      {buildChapter(props.trans.single, "1pet", "1")}
-      <Paragraph></Paragraph>
-    </ChapterView>  
-  );
+  render() {
+    return (
+      <View onLayout={this.onLayoutChange} style={commonStyles.container}>
+      { this.state.isPortrait ?
+        <ChapterView>
+          <Paragraph>Перевод {this.props.trans.single}</Paragraph>
+          {buildChapter(this.props.trans.single, "1pet", "1")}
+        </ChapterView>
+      :
+        <ChapterMultiView 
+          tpv={buildChapter("TPV", "1pet", "1")}
+          tpk={buildChapter("TPK", "1pet", "1")}
+          op={buildChapter("OP", "1pet", "1")}>
+        </ChapterMultiView>
+      }
+      </View>
+    );
+  }
 }
+
 const mapStateToProps = (state) => ({
   nav: state.nav,
   trans: state.trans
