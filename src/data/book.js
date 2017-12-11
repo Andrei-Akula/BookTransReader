@@ -13,19 +13,19 @@ const bookContent = [
     key: 'jas', name: 'Послание Иакова', shortName: 'Иак', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(5)] },
   {
-    key: 'ijn', name: 'Первое послание Иоанна', shortName: '1 Ин', data: Nt1Pet,
+    key: 'ijn', name: '1-е послание Иоанна', shortName: '1 Ин', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(5)] },
   {
-    key: '2jn', name: 'Второе послание Иоанна', shortName: '2 Ин', data: Nt1Pet,
+    key: '2jn', name: '2-е послание Иоанна', shortName: '2 Ин', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(1)] },
   {
-    key: '3jn', name: 'Третье послание Иоанна', shortName: '3 Ин', data: Nt1Pet,
+    key: '3jn', name: '3-е послание Иоанна', shortName: '3 Ин', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(1)] },
   {
-    key: '1pet', name: 'Первое послание Петра', shortName: '1 Петр', data: Nt1Pet,
+    key: '1pet', name: '1-е послание Петра', shortName: '1 Петр', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(5)] },
   {
-    key: '2pet', name: 'Второе послание Петра', shortName: '2 Петр', data: Nt1Pet,
+    key: '2pet', name: '2-е послание Петра', shortName: '2 Петр', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(3)] },
   {
     key: 'jude', name: 'Послание Иуды', shortName: 'Иуд', data: Nt1Pet,
@@ -34,10 +34,10 @@ const bookContent = [
     key: 'rom', name: 'Послание к Римлянам', shortName: 'Рим', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(16)] },
   {
-    key: '1cor', name: 'Первое послание к Коринфянам', shortName: '1 Кор', data: Nt1Pet,
+    key: '1cor', name: '1-е послание к Коринфянам', shortName: '1 Кор', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(16)] },
   {
-    key: '2cor', name: 'Второе послание к Коринфянам', shortName: '2 Кор', data: Nt1Pet,
+    key: '2cor', name: '2-е послание к Коринфянам', shortName: '2 Кор', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(13)] },
   {
     key: 'gal', name: 'Послание к Галатам', shortName: 'Гал', data: Nt1Pet,
@@ -52,16 +52,16 @@ const bookContent = [
     key: 'col', name: 'Послание к Колоссянам', shortName: 'Кол', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(4)] },
   {
-    key: '1thess', name: 'Первое послание к Фессалоникийцам', shortName: '1 Фес', data: Nt1Pet,
+    key: '1thess', name: '1-е послание к Фессалоникийцам', shortName: '1 Фес', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(5)] },
   {
-    key: '2thess', name: 'Второе послание к Фессалоникийцам', shortName: '2 Фес', data: Nt1Pet,
+    key: '2thess', name: '2-е послание к Фессалоникийцам', shortName: '2 Фес', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(3)] },
   {
-    key: '1tim', name: 'Первое послание к Тимофею', shortName: '1 Тим', data: Nt1Pet,
+    key: '1tim', name: '1-е послание к Тимофею', shortName: '1 Тим', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(6)] },
   {
-    key: '2tim', name: 'Второе послание к Тимофею', shortName: '2 Тим', data: Nt1Pet,
+    key: '2tim', name: '2-е послание к Тимофею', shortName: '2 Тим', data: Nt1Pet,
     chapterNumbers: [...takeNumbers(4)] },
   {
     key: 'titus', name: 'Послание к Титу', shortName: 'Тит', data: Nt1Pet,

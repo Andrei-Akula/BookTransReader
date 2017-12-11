@@ -28,6 +28,10 @@ export const commonStyles = StyleSheet.create({
     margin: 10,
     padding: 10,
   },
+  translationMultiItem: {
+    backgroundColor: 'transparent',
+    borderBottomColor: 'transparent'
+  },
   chapterScrollViewGridItem: {
     padding: 5,
     flexDirection: 'column',
@@ -46,15 +50,15 @@ export const commonStyles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 4,
   },
-  translationBarView: {
-    height: 50,
-    backgroundColor: '#757575',
-  },
-  translationBarContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
+  // translationBarView: {
+  //   height: 50,
+  //   backgroundColor: '#757575',
+  // },
+  // translationBarContainer: {
+  //   flex: 1,
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-around',
+  // },
   baseText: {
     color: TEXT_COLOR,
     fontFamily: 'Helvetica Neue',

@@ -4,20 +4,12 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  // Platform,
-  // Text,
-  // Button,
-  // ScrollView,
-  // View,
-  BackHandler
-} from 'react-native';
+import React from 'react';
+import { BackHandler } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
 import storeReducers from './src/redux/store';
 import { addNavigationHelpers, NavigationActions } from "react-navigation";
-// import { commonStyles } from './src/styles/global';
 import Drawer from './src/components/drawer/navigator';
 
 class ReduxNavigation extends React.Component {
