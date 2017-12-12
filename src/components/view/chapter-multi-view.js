@@ -13,7 +13,11 @@ import { commonStyles } from '../../styles/global';
 const transCount = reduce((acc, tr) => tr ? acc + 1 : acc, 0);
 
 function ChapterGrid({ transMulti, tpv, tpk, op }) {
-  const itemsWidthStyle = transCount(values(transMulti)) === 3 ? commonStyles.chapterThreeItems : commonStyles.chapterTwoItems;
+  const translationCount = transCount(values(transMulti));
+  const itemsWidthStyle = translationCount === 3 ? 
+    commonStyles.chapterThreeItems :  
+    (translationCount === 2 ?
+      commonStyles.chapterTwoItems : commonStyles.chapterOneItem);
   return (
     <ScrollView>
       <View style={commonStyles.chapterGrid}>

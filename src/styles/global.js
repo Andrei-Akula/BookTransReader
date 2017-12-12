@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const TEXT_COLOR = '#111';
 export const BG_COLOR = '#ecf0f1';
@@ -35,7 +35,6 @@ export const commonStyles = StyleSheet.create({
   chapterScrollViewGridItem: {
     padding: 5,
     flexDirection: 'column',
-    
   },
   chapterThreeItems: {
     margin: 2,
@@ -45,44 +44,65 @@ export const commonStyles = StyleSheet.create({
     margin: 4,
     width: '49%',
   },
+  chapterOneItem: {
+    margin: 6,
+  },
   chapterGrid: {
     flex: 1,
     flexDirection: 'row',
     marginHorizontal: 4,
   },
-  // translationBarView: {
-  //   height: 50,
-  //   backgroundColor: '#757575',
-  // },
-  // translationBarContainer: {
-  //   flex: 1,
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-around',
-  // },
   baseText: {
     color: TEXT_COLOR,
-    fontFamily: 'Helvetica Neue',
-    textAlign: 'justify'
+    ...Platform.select({
+      ios: {
+        fontFamily: 'Helvetica Neue'
+      },
+      android: {
+        fontFamily: 'Roboto'
+      }
+    })
+    //textAlign: 'justify'
   },
   headerText: {
-    fontFamily: 'Helvetica Neue',
-    fontSize: 20,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'Helvetica Neue',
+        fontSize: 20,
+        fontWeight: "400",
+        lineHeight: 25,
+        letterSpacing: 20 * 19 / 1000,
+      },
+      android: {
+        fontFamily: 'Roboto',
+        fontSize: 20,
+        fontWeight: "500",
+        lineHeight: 32,
+        letterSpacing: 5,
+      }
+    }),
     marginBottom: 10,
     textAlign: 'center',
-    fontWeight: '400',
-    lineHeight: 24,
-    letterSpacing: 0.38
   },
   paragraphText: {
     marginBottom: 5,
   },
   verseText: {
-    // fontSize: 14,
     // color: VERSE_TEXT_COLOR,
-    fontSize: 17,
-    fontWeight: '400',
-    lineHeight: 22,
-    letterSpacing: -0.408
+    ...Platform.select({
+      ios: {
+        fontSize: 17,
+        fontWeight: "400",
+        lineHeight: 22,
+        letterSpacing: 17 * -24 / 1000,
+      },
+      android: {
+        fontSize: 14,
+        fontWeight: "400",
+        lineHeight: 20,
+        letterSpacing: 10,
+      }
+    }),
   },
   verseNumberText: {
     color: VERSE_NUMBER_TEXT_COLOR,
@@ -92,10 +112,21 @@ export const commonStyles = StyleSheet.create({
   },
   verseNoteText: {
     // color: VERSE_NOTE_TEXT_COLOR,
+    ...Platform.select({
+      ios: {
+        fontSize: 17,
+        // fontWeight: "400",
+        lineHeight: 22,
+        letterSpacing: 17 * -24 / 1000,
+      },
+      android: {
+        fontSize: 14,
+        // fontWeight: "400",
+        lineHeight: 20,
+        letterSpacing: 10,
+      }
+    }),
     fontWeight: '500',
-    fontSize: 17,
-    lineHeight: 22,
-    letterSpacing: -0.408
   },
   verseCiteText: {
     // color: VERSE_CITE_TEXT_COLOR,
