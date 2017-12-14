@@ -81,7 +81,10 @@ class ChapterScreenUI extends React.Component {
     const { navigation, trans, switchTranslation } = this.props;
     const { book, chapter = '1' } = navigation.state.params;
     return (
-      <View onLayout={this.onLayoutChange} style={commonStyles.container}>
+      <View 
+        onLayout={this.onLayoutChange}
+        style={commonStyles.container}
+      >
         {this.state.isPortrait ?
           <ChapterView>
             {buildChapter(trans.single, book, chapter)}
@@ -134,6 +137,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(toggleTranslaion(tr, isMulti))
   }
 });
+
 
 export const ChapterScreen = connect(mapStateToProps, mapDispatchToProps)(ChapterScreenUI);
 

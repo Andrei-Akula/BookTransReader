@@ -1,15 +1,19 @@
 export const SELECT_VERSE = 'SELECT_VERSE';
 export const CLEAR_VERSE_SELECTION = 'CLEAR_VERSE_SELECTION';
 
-export function selectVerse(number) {
+export function selectVerse(selectedVerse) {
   return {
     type: SELECT_VERSE,
-    verseNumber: number
+    selectedVerse
   }
 }
 export function clearVerseSelection() {
   return {
     type: SELECT_VERSE,
-    verseNumber: 0
+    selectedVerse: {
+      book: '',
+      chapter: '',
+      number: 0
+    }
   }
 }

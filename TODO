@@ -1,6 +1,6 @@
 
-- Translation picker on Android: select translation by tapping on list item and radio button as well.
-
-- Text selection: select text (verse) only for a chapter (now it selects for only verse)
-
 - Add first screen
+
+- Change verse notes (use number like a html link with blue color)
+
+- Add lint

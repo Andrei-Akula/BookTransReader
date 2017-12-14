@@ -72,10 +72,14 @@ export class TranslationPicker extends React.Component {
                 renderRow={(item) => 
                   <ListItem
                     button 
-                    onPress={() => this.selectTranslation(item.value)}>
+                    onPress={() => this.selectTranslation(item.value)}
+                  >
                     <Text>{item.label}</Text>
                     <Right>
-                      <Radio selected={selected === item.value} />
+                      <Radio
+                        selected={selected === item.value}
+                        onPress={() => this.selectTranslation(item.value)}
+                      />
                     </Right>
                   </ListItem>
                 }

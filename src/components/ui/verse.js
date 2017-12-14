@@ -1,33 +1,39 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
 import { selectVerse } from '../../redux/actions/text-related'
 import { commonStyles } from '../../styles/global';
 
 class VerseWpapper extends React.Component {
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.selectedVerse !== this.props.selectedVerse
-      && (this.props.selectedVerse === this.props.number 
-          || nextProps.selectedVerse === this.props.number);
+    const { book, chapter, number, selectedVerse } = this.props;
+    const verse = { book, chapter, number };
+    // update if selection changed and the verse was selected or will be selected
+    return !isEqual(nextProps.selectedVerse, selectedVerse)
+      && (isEqual(selectedVerse, verse) 
+      || isEqual(nextProps.selectedVerse, verse));
   }
   
   render () {
-    const { number, selectedVerse, children } = this.props;
-    const style = selectedVerse === number ? commonStyles.selectedVerseText : [];
+    const { book, chapter, number, selectedVerse, children } = this.props;
+    const verse = { book, chapter, number };
+    const isSelected = isEqual(selectedVerse, verse);
+    const style = isSelected ? commonStyles.selectedVerseText : [];
     return (
       <Text 
-        onPress={() => this.props.selectVerse(selectedVerse === number ? 0 : number)} 
+        onPress={() => this.props.selectVerse(isSelected ? { book: '', chapter: '', number: 0} : verse)} 
         style={style}>{children}</Text>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  selectedVerse: state.text.selectedVerseNumber
+  selectedVerse: state.text.selectedVerse
 });
 const mapDispatchToProps = (dispatch) => ({
-  selectVerse: number => dispatch(selectVerse(number))
+  selectVerse: verse => dispatch(selectVerse(verse))
 });
 
 export const VerseUI = connect(mapStateToProps, mapDispatchToProps)(VerseWpapper);

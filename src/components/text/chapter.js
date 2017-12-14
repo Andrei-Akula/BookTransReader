@@ -21,18 +21,23 @@ const buildTextWithNotes = reduce((acc, item) => {
 }, []);
 
 
-const buildVerses = reduce((acc, verse) => 
+const buildVerses = (book, chapter, verses) => reduce((acc, verse) => 
   (verse.type === 'verse' ?
     [
       ...acc,
-      <VerseUI number={verse.number} key={`VerseUI-${verse.number}`}>
+      <VerseUI 
+        book={book}
+        chapter={chapter}
+        number={verse.number} 
+        key={`VerseUI-${verse.number}`}
+      >
         <VerseNumber number={verse.number} key={`number${verse.number}`} />
         {(isString(verse.text) ? 
           <Verse key={`verse-${verse.number}`}>{verse.text}</Verse>
         : buildTextWithNotes(verse.text))}
       </VerseUI>,
     ]
-    : acc), []);
+    : acc), [], verses);
 
 export function buildChapter(trans, bookId, chapter) {
 
@@ -44,7 +49,8 @@ export function buildChapter(trans, bookId, chapter) {
   let i = 0;
   return reduce((acc, item) => {
     if (item.type === "paragraph") {
-      return [...acc, <Paragraph key={`${bookId}-${chapter}-${++i}`}>{buildVerses(item.text)}</Paragraph>];
+      i += 1;
+      return [...acc, <Paragraph key={`${bookId}-${chapter}-${i}`}>{buildVerses(bookId, chapter, item.text)}</Paragraph>];
     }
     return acc;
   }, [], chapterData.text);
