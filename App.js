@@ -10,7 +10,7 @@ import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
 import storeReducers from './src/redux/store';
 import { addNavigationHelpers, NavigationActions } from "react-navigation";
-import Drawer from './src/components/drawer/navigator';
+import { Drawer } from './src/components/drawer/navigator';
 
 class ReduxNavigation extends React.Component {
   componentDidMount() {

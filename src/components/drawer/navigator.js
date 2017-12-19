@@ -1,21 +1,14 @@
 import React from 'react';
-import { DrawerNavigator, StackNavigator } from 'react-navigation';
+import { DrawerNavigator } from 'react-navigation';
 import { CustomDrawerContentComponent } from './content';
 import { HomeScreen } from '../screens/home-screen'
-import { ChapterScreen } from '../screens/chapter-screen';
+import { OnboardScreen } from '../screens/onboard-screen'
+import { ChapterNavigator } from '../screens/navigation';
 
 
-const chapterNavigator = StackNavigator({
-  book: { 
-    screen: ChapterScreen,
-    path: 'book/:bookId/:chapter',
-  }
-});
-
-const Drawer = DrawerNavigator({
+export const Drawer = DrawerNavigator({
+  onboard: { screen: OnboardScreen },
   home: { screen: HomeScreen },
-  books: { screen: chapterNavigator }
-  }, { contentComponent: CustomDrawerContentComponent }
+  books: { screen: ChapterNavigator }
+}, { contentComponent: CustomDrawerContentComponent }
 );
-
-export default Drawer;
