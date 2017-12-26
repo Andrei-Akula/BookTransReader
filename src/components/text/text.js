@@ -3,117 +3,97 @@ import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 import { commonStyles } from '../../styles/global'
 
-export function BaseText({ style, children, ...rest }) {
+
+export function HeaderText({ children, ...rest }) {
   return (
-    <Text style={[commonStyles.baseText, style]} {...rest}>
+    <Text style={commonStyles.headerText} {...rest}>
+      {children}
+    </Text>
+  );
+}
+
+HeaderText.propTypes = {
+  children: PropTypes.node
+};
+
+
+export function ParagraphText({ children, ...rest }) {
+  return (
+    <Text style={commonStyles.paragraphText} {...rest}>
     {children}
     </Text>
   );
 }
 
-BaseText.propTypes = {
-  style: Text.propTypes.style,
+ParagraphText.propTypes = {
   children: PropTypes.node
 };
 
 
-export function Header({ style, children }) {
+export function VerseText({ style, children, ...rest }) {
   return (
-    <BaseText style={[commonStyles.headerText, style]}>
-    {children}
-    </BaseText>
+    <Text style={[commonStyles.verseText, style]} {...rest}>
+      {children}
+    </Text>
   );
 }
 
-Header.propTypes = {
+VerseText.propTypes = {
   style: Text.propTypes.style,
   children: PropTypes.node
 };
 
 
-export function Paragraph({ style, children }) {
+export function VerseNumber({ number, ...rest }) {
   return (
-    <BaseText style={[commonStyles.paragraphText, style]}>
-    <TextSpace />{children}
-    </BaseText>
-  );
-}
-
-Paragraph.propTypes = {
-  style: Text.propTypes.style,
-  children: PropTypes.node
-};
-
-
-export function Verse({ style, children }) {
-  return (
-    <BaseText style={[commonStyles.verseText, style]}>
-    {children}<TextSpace />
-    </BaseText>
-  );
-}
-
-Verse.propTypes = {
-  style: Text.propTypes.style,
-  children: PropTypes.node
-};
-
-
-export function VerseNumber({ style, number }) {
-  return (
-    <BaseText style={[commonStyles.verseNumberText, style]}>
+    <Text style={commonStyles.verseNumberText} {...rest}>
     {number}<NumberSpace />
-    </BaseText>
+    </Text>
   );
 }
 
 VerseNumber.propTypes = {
-  style: Text.propTypes.style,
   children: PropTypes.node
 };
 
 
-export function Note({ children, isEnd, ...rest }) {
+export function NoteText({ children, isEnd, ...rest }) {
   const space = isEnd ? null : <TextSpace />
   return (
-    <BaseText style={commonStyles.verseNoteText} {...rest}>
+    <Text style={commonStyles.verseNoteText} {...rest}>
       {children}{space}
-    </BaseText>
+    </Text>
   );
 }
 
-Note.propTypes = {
-  style: Text.propTypes.style,
+NoteText.propTypes = {
   children: PropTypes.node
 };
 
 
-export function Cite({ children }) {
+export function CiteText({ children, ...rest }) {
   return (
-    <BaseText style={commonStyles.verseCiteText}>
+    <Text style={commonStyles.verseCiteText} {...rest}>
     {children}
-    </BaseText>
+    </Text>
   );
 }
 
-Cite.propTypes = {
+CiteText.propTypes = {
   children: PropTypes.node
 };
 
-// Difference
-
-// MultipleOptions
 
 
-function TextSpace() {
+export function TextSpace() {
   const sp = ' ';
   return (
-    <BaseText>{sp}</BaseText>
+    <VerseText>{sp}</VerseText>
   );
 }
 
 function NumberSpace() {
   return (
-    <BaseText style={{color: 'transparent'}}>|</BaseText>
+    <Text style={{color: 'transparent'}}>|</Text>
   );
 }

@@ -4,7 +4,7 @@ export const TEXT_COLOR = '#111';
 export const BG_COLOR = '#ecf0f1';
 export const VERSE_NUMBER_TEXT_COLOR = '#777';
 export const VERSE_TEXT_COLOR = TEXT_COLOR;
-export const VERSE_NOTE_TEXT_COLOR = TEXT_COLOR;
+export const VERSE_NOTE_TEXT_COLOR = '#007AFF';
 export const VERSE_CITE_TEXT_COLOR = TEXT_COLOR;
 // export const MUTED_COLOR = '#8e8786';
 // export const LINK_COLOR = '#48e9d9';
@@ -20,12 +20,10 @@ export const commonStyles = StyleSheet.create({
   chapterView: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    backgroundColor: '#e9e9ef',
+    // backgroundColor: '#e9e9ef',
   },
   chapterScrollView: {
     backgroundColor: '#fff',
-    margin: 10,
     padding: 10,
   },
   translationMultiItem: {
@@ -85,10 +83,10 @@ export const commonStyles = StyleSheet.create({
     textAlign: 'center',
   },
   paragraphText: {
-    marginBottom: 5,
+    marginBottom: 8,
   },
   verseText: {
-    // color: VERSE_TEXT_COLOR,
+    color: VERSE_TEXT_COLOR,
     ...Platform.select({
       ios: {
         fontSize: 17,
@@ -106,27 +104,46 @@ export const commonStyles = StyleSheet.create({
   },
   verseNumberText: {
     color: VERSE_NUMBER_TEXT_COLOR,
-  },
-  selectedVerseText: {
-    backgroundColor: '#ffcc00'
-  },
-  verseNoteText: {
-    // color: VERSE_NOTE_TEXT_COLOR,
     ...Platform.select({
       ios: {
-        fontSize: 17,
-        // fontWeight: "400",
-        lineHeight: 22,
-        letterSpacing: 17 * -24 / 1000,
+        fontFamily: 'Avenir Next',
+        fontSize: 15,
+        fontWeight: "400",
+        lineHeight: 20,
+        letterSpacing: 15 * -16 / 1000,
       },
       android: {
-        fontSize: 14,
-        // fontWeight: "400",
+        fontFamily: 'Roboto Thin',
+        fontSize: 13,
+        fontWeight: "400",
         lineHeight: 20,
         letterSpacing: 10,
       }
     }),
-    fontWeight: '500',
+  },
+  selectedVerseText: {
+    backgroundColor: '#FFF9C4'
+  },
+  verseNoteText: {
+    color: VERSE_NOTE_TEXT_COLOR,
+    textDecorationLine: 'underline',
+    textAlignVertical: 'top',
+    ...Platform.select({
+      ios: {
+        fontFamily: 'Georgia',
+        fontSize: 15,
+        fontWeight: "400",
+        lineHeight: 20,
+        letterSpacing: 15 * -16 / 1000,
+      },
+      android: {
+        fontFamily: 'Roboto Thin',
+        fontSize: 13,
+        fontWeight: "400",
+        lineHeight: 20,
+        letterSpacing: 10,
+      }
+    }),
   },
   verseCiteText: {
     // color: VERSE_CITE_TEXT_COLOR,

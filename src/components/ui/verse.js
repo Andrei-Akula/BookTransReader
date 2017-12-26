@@ -3,9 +3,10 @@ import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash';
 import { selectVerse } from '../../redux/actions/text-related'
+import { VerseText } from '../text/text';
 import { commonStyles } from '../../styles/global';
 
-class VerseWpapper extends React.Component {
+class VerseUI extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     const { book, chapter, number, selectedVerse } = this.props;
@@ -22,9 +23,9 @@ class VerseWpapper extends React.Component {
     const isSelected = isEqual(selectedVerse, verse);
     const style = isSelected ? commonStyles.selectedVerseText : [];
     return (
-      <Text 
+      <VerseText 
         onPress={() => this.props.selectVerse(isSelected ? { book: '', chapter: '', number: 0} : verse)} 
-        style={style}>{children}</Text>
+        style={style}>{children}</VerseText>
     );
   }
 }
@@ -36,4 +37,4 @@ const mapDispatchToProps = (dispatch) => ({
   selectVerse: verse => dispatch(selectVerse(verse))
 });
 
-export const VerseUI = connect(mapStateToProps, mapDispatchToProps)(VerseWpapper);
+export const Verse = connect(mapStateToProps, mapDispatchToProps)(VerseUI);

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Text } from 'react-native';
 import { isString, isArray, isEmpty, isUndefined, size } from 'lodash';
-import { map, reduce, parseInt  } from 'lodash/fp';
+import { map, reduce, tail, parseInt  } from 'lodash/fp';
 import { commonStyles } from '../../styles/global'
-import { Header, Paragraph, VerseNumber, Verse, Note, Cite } from './text';
-import { NoteUI } from '../ui/note';
-import { VerseUI } from '../ui/verse';
+import { HeaderText, ParagraphText, VerseNumber, NoteText, CiteText, TextSpace } from './text';
+import { Note } from '../ui/note';
+import { Verse } from '../ui/verse';
 import { getBookChapter } from '../../data/book';
 
 const getChapterAsNumber = parseInt(10);
@@ -13,31 +14,36 @@ const getChapterAsNumber = parseInt(10);
 
 const buildTextWithNotes = reduce((acc, item) => {
   if (isUndefined(item.type) || item.type === "text") {
-    return [...acc, <Verse key={`verse-text-${size(acc)}`} >{item.text}</Verse>];
+    return [...acc, <Text key={`verse-text-${size(acc)}`} >{item.text}</Text>];
   } else if (item.type === "note" ){
-    return [...acc, <NoteUI key={`verse-text-${size(acc)}`} note={item.note} isEnd={item.end}>{item.text}</NoteUI>];
+    return [...acc, <Note key={`verse-text-${size(acc)}`} note={item.note} isEnd={item.end}>{item.text}</Note>];
   }
   return acc; 
 }, []);
 
 
-const buildVerses = (book, chapter, verses) => reduce((acc, verse) => 
+const buildVerses = (book, chapter, verses) => { 
+  const result = reduce((acc, verse) => 
   (verse.type === 'verse' ?
     [
       ...acc,
-      <VerseUI 
+      <TextSpace key={`space-verse-${verse.number}`} />,
+      <Verse 
         book={book}
         chapter={chapter}
         number={verse.number} 
-        key={`VerseUI-${verse.number}`}
+        key={`Verse-${verse.number}`}
       >
         <VerseNumber number={verse.number} key={`number${verse.number}`} />
         {(isString(verse.text) ? 
-          <Verse key={`verse-${verse.number}`}>{verse.text}</Verse>
+          <Text key={`verse-text-${verse.number}`}>{verse.text}</Text>
         : buildTextWithNotes(verse.text))}
-      </VerseUI>,
+      </Verse>,
     ]
     : acc), [], verses);
+
+  return tail(result);
+}
 
 export function buildChapter(trans, bookId, chapter) {
 
@@ -50,7 +56,7 @@ export function buildChapter(trans, bookId, chapter) {
   return reduce((acc, item) => {
     if (item.type === "paragraph") {
       i += 1;
-      return [...acc, <Paragraph key={`${bookId}-${chapter}-${i}`}>{buildVerses(bookId, chapter, item.text)}</Paragraph>];
+      return [...acc, <ParagraphText key={`${bookId}-${chapter}-${i}`}>{buildVerses(bookId, chapter, item.text)}</ParagraphText>];
     }
     return acc;
   }, [], chapterData.text);

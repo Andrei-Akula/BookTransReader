@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import { Note, Cite } from '../text/text';
+import { NoteText, CiteText } from '../text/text';
 
 function handleNotePress(note) {
   return function () {
@@ -8,9 +8,9 @@ function handleNotePress(note) {
   }
 }
 
-export function NoteUI(props) {
+export function Note(props) {
   const { note, isEnd, children } = props;
   return (
-    <Note onPress={handleNotePress(note)} isEnd={isEnd}>{children}</Note>
+    <NoteText onPress={handleNotePress(note)} isEnd={isEnd}> {children}</NoteText>
   );
 }

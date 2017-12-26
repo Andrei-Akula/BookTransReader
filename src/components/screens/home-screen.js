@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,  Text } from "native-base";
-import { Header as HeaderText } from '../text/text'
+import { HeaderText } from '../text/text'
 import { BookContent } from '../drawer/content'
 
 export class HomeScreen extends React.Component {
