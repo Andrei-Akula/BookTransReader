@@ -127,7 +127,6 @@ export const commonStyles = StyleSheet.create({
   verseNoteText: {
     color: VERSE_NOTE_TEXT_COLOR,
     textDecorationLine: 'underline',
-    textAlignVertical: 'top',
     ...Platform.select({
       ios: {
         fontFamily: 'Georgia',
@@ -138,10 +137,11 @@ export const commonStyles = StyleSheet.create({
       },
       android: {
         fontFamily: 'Roboto Thin',
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: "400",
         lineHeight: 20,
         letterSpacing: 10,
+        textAlignVertical: 'top',
       }
     }),
   },

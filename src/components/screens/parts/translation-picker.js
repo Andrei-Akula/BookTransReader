@@ -1,7 +1,7 @@
 import React from 'react';
 import { find, get, compose } from 'lodash/fp';
 import { Modal, View } from 'react-native';
-import { Container, Header, Title, Body, Content, Icon, Button, List, ListItem, 
+import { Container, Header, Title, Body, Content, Icon, Button, List, ListItem,
   Text, Radio, Left, Right } from 'native-base';
 import { commonStyles } from '../../../styles/global';
 
@@ -45,11 +45,12 @@ export class TranslationPicker extends React.Component {
         >
             <Text>{getSelectedLabel(this.listData)}</Text>
         </ListItem>
-        
+
         <Modal
           visible={this.state.isModalVisible}
           transparent={false}
           animationType="slide"
+          onRequestClose = {() => this.closeModal()}
         >
           <Container>
             <Header>
@@ -69,9 +70,9 @@ export class TranslationPicker extends React.Component {
             <Content>
               <List
                 dataArray={this.listData}
-                renderRow={(item) => 
+                renderRow={(item) =>
                   <ListItem
-                    button 
+                    button
                     onPress={() => this.selectTranslation(item.value)}
                   >
                     <Text>{item.label}</Text>
