@@ -58,10 +58,6 @@ class ChapterScreenUI extends React.Component {
     };
   }
 
-  onTPVOnly = (params) => this.props.switchTranslation('TPV');
-  onTPKOnly = (params) => this.props.switchTranslation('TPK');
-  onOPOnly = (params) => this.props.switchTranslation('OP');
-
   navigate = (isNext) => {
     const { navigation } = this.props;
     const { book, chapter } = navigation.state.params;
