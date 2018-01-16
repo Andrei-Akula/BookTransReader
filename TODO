@@ -1,8 +1,22 @@
 
 - Make changes for tablet layout
 
+- Replace note numbers with latin letters.
+
 - Add marks and styles for translation differences
+- Do not break verse numbers and the verse text (remove text space, make font space instead)
+
+- Use modal window (sliding from bottom) to display notes.
+- Use redux state to show and hide the notes window.
+
+- Change chapter screen animation for prev and next actions.
 
 - Add Help system (Guide, FAQ)
 
+- Add screen with translations info (why three translation ...)
+- Add a link to the translation info screen to the screen of translation selection.
+
+- Save state (current chapter ...) to async storage 
+
+Dev:
 - Add lint
