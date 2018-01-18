@@ -1,9 +1,4 @@
 
-- Make changes for tablet layout
-
-- Replace note numbers with latin letters.
-
-- Add marks and styles for translation differences
 - Do not break verse numbers and the verse text (remove text space, make font space instead)
 
 - Use modal window (sliding from bottom) to display notes.
@@ -17,6 +12,8 @@
 - Add a link to the translation info screen to the screen of translation selection.
 
 - Save state (current chapter ...) to async storage 
+
+- Make changes for tablet layout
 
 Dev:
 - Add lint
