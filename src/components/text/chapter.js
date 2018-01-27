@@ -16,7 +16,7 @@ const buildTextWithNotes = reduce((acc, item) => {
   if (isUndefined(item.type) || item.type === "text") {
     return [...acc, <Text key={`verse-text-${size(acc)}`} >{item.text}</Text>];
   } else if (item.type === "note" ){
-    return [...acc, <Note key={`verse-text-${size(acc)}`} note={item.note} isEnd={item.end}>{item.text}</Note>];
+    return [...acc, <Note key={`verse-text-${size(acc)}`} note={`${item.text}) ${item.note}`} isEnd={item.end}>{item.text}</Note>];
   }
   return acc; 
 }, []);

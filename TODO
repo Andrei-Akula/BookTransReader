@@ -1,8 +1,8 @@
 
 - Do not break verse numbers and the verse text (remove text space, make font space instead)
 
-- Use modal window (sliding from bottom) to display notes.
-- Use redux state to show and hide the notes window.
++ Use modal window (sliding from bottom) to display notes.
++ Use redux state to show and hide the notes window.
 
 - Change chapter screen animation for prev and next actions.
 

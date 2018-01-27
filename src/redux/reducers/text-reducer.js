@@ -1,4 +1,3 @@
-import { merge } from 'lodash';
 import { SELECT_VERSE  } from '../actions/text-related'
 
 const initialState = {

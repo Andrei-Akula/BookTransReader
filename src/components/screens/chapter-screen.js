@@ -14,6 +14,7 @@ import { buildChapter } from '../../components/text/chapter';
 import { getBookContent } from '../../data/book';
 import { toggleTranslaion } from '../../redux/actions/translations';
 import { commonStyles } from '../../styles/global';
+import { InfoWindow } from '../ui/info-window';
 
 
 
@@ -119,6 +120,7 @@ class ChapterScreenUI extends React.Component {
             }
           </FooterTab>
         </Footer>
+        <InfoWindow />
       </View>
     );
   }
