@@ -15,6 +15,7 @@ import { getBookContent } from '../../data/book';
 import { toggleTranslaion } from '../../redux/actions/translations';
 import { commonStyles } from '../../styles/global';
 import { InfoWindow } from '../ui/info-window';
+import { saveNavRoute } from '../../utils/navigation-store';
 
 
 
@@ -30,8 +31,8 @@ function getNavRoute(bookId, chapter, isNext = true) {
 
   if (isOutOfChapterBoundary()) {
     const nextBook = bookContent[bookIndex + chapterDelta];
-    const nextBookChapter = isNext ? '1' : `${nextBook.chapterNumbers.length}`;
     if (nextBook) {
+      const nextBookChapter = isNext ? '1' : `${nextBook.chapterNumbers.length}`;
       return { book: nextBook.key, chapter: nextBookChapter }
     } else {
       return null;
@@ -64,8 +65,10 @@ class ChapterScreenUI extends React.Component {
     const { book, chapter } = navigation.state.params;
     const navRoute = getNavRoute(book, getChapterAsNumber(chapter), isNext);
     if (navRoute) {
+      saveNavRoute('book', navRoute);
       navigation.navigate('book', navRoute);
     } else {
+      saveNavRoute('home');
       navigation.navigate('home');
     }
   };

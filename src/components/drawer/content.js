@@ -5,6 +5,7 @@ import { SafeAreaView, NavigationActions } from 'react-navigation';
 import { TouchableItem } from '../view/TouchableItem';
 import { getBookContent } from '../../data/book';
 import { drawerStyles } from '../../styles/drawer';
+import { saveNavRoute } from '../../utils/navigation-store';
 
 // export function BookContent(props) {
 //   return (
@@ -23,6 +24,7 @@ import { drawerStyles } from '../../styles/drawer';
 //     />
 //   );
 // }
+
 export function BookContent(props) {
   const items = getBookContent();
   const { 
@@ -43,21 +45,25 @@ export function BookContent(props) {
           ? activeBackgroundColor
           : inactiveBackgroundColor;
 
+        const routeName = 'book';
+        const params = {
+          book: item.key,
+          chapter: "1"
+        } ;
         const resetAction = NavigationActions.reset({
           index: 0,
           actions: [
-            NavigationActions.navigate({ routeName: 'book', params: { 
-                book: item.key, 
-                chapter: "1" 
-              } 
-            })
+            NavigationActions.navigate({ routeName,  params })
           ]
-        })
+        });
 
         return (
           <TouchableItem
             key={item.key}
-            onPress={() => navigation.dispatch(resetAction) }
+            onPress={() => {
+              saveNavRoute(routeName, params );
+              navigation.dispatch(resetAction);
+            } }
             delayPressIn={0}
           >
             <SafeAreaView

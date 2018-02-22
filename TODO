@@ -4,6 +4,9 @@
 + Use modal window (sliding from bottom) to display notes.
 + Use redux state to show and hide the notes window.
 
+- Change labels of translations in Translation selection screen
+ Традиционный -> Византийский трад.  и  Критический трад.
+
 - Change chapter screen animation for prev and next actions.
 
 - Add Help system (Guide, FAQ)
@@ -11,7 +14,7 @@
 - Add screen with translations info (why three translation ...)
 - Add a link to the translation info screen to the screen of translation selection.
 
-- Save state (current chapter ...) to async storage 
++ Store the current chapter state to async storage 
 
 - Make changes for tablet layout
 
