@@ -83,6 +83,19 @@ CiteText.propTypes = {
   children: PropTypes.node
 };
 
+export function HelpText({ children, ...rest }) {
+  return (
+    <Text style={commonStyles.helpText} {...rest}>
+      {children}
+    </Text>
+  );
+}
+
+HelpText.propTypes = {
+  children: PropTypes.node
+};
+
+
 
 
 export function TextSpace() {

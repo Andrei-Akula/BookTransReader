@@ -145,6 +145,10 @@ export const commonStyles = StyleSheet.create({
       }
     }),
   },
+  helpText: {
+    color: VERSE_TEXT_COLOR,
+    marginBottom: 5
+  },
   verseCiteText: {
     // color: VERSE_CITE_TEXT_COLOR,
     fontStyle: 'italic'
